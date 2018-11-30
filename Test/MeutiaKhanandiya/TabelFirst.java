@@ -20,5 +20,10 @@ public class TabelFirst extends DefaultTableModel {
             "Nama" , "Harga" , "Jumlah"} ;
     }
     
+    // menambahkan Kolom Nama getter
+    public String[] getKolomNama (){
+        return this.kolom;
+    }
+    
     
 }
