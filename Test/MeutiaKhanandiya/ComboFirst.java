@@ -6,6 +6,7 @@
 package MeutiaKhanandiya;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -13,12 +14,13 @@ import java.util.ArrayList;
  */
 public class ComboFirst {
     
+    private HashMap<String , Float> items = new HashMap<> () ;
     public ComboFirst () {
         this.items.put ("Gula" , new Float (30000));
         this.items.put ("Gula" , new Float (20000));
         this.items.put ("Gula" , new Float (10000));
     }
-    
+    // ArrayList getter Name
     public ArrayList<String> getNames() {
         ArrayList <String> obt = new ArrayList<> () ;
         for (String item : this.items.keySet ()) {
@@ -26,12 +28,17 @@ public class ComboFirst {
         } return obt;
         
         }
+    // ArrayList getter Harga
     public ArrayList <Float> getPrices () {
         ArrayList <Float> flt = new ArrayList<> () ;
         for (float item : this.items.values()) {
                 flt.add(item) ;
         }
         return flt ;
+    }
+    
+    public void addItem (String nama , float harga) {
+        this.items.put (nama, harga) ;
     }
     
 }
