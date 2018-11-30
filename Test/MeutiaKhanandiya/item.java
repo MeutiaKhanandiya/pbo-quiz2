@@ -9,10 +9,16 @@ package MeutiaKhanandiya;
  *
  * @author MEUTIA KHANANDIYA
  */
+
+// Deklarasi class Item untuk merepresentasikan barang
+// yang akan dimasukkan dalam daftar belanja.
 public class item {
      private String nama;
+     // atribut yang digunakan untuk menyimpan nama barang
      private float harga;
+     // atribut yang digunakan untuk menyimpan harga barang
      private int jumlah;
+     // atribut yang digunakan untuk menunjukan jumlah barang
      
      //menambahkan Constructor pada Class Item
      public item(){
