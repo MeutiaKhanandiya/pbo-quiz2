@@ -3,20 +3,88 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MeutiaKhanandiya;
+package MeutiaKhanandiya.Table;
 
 /**
  *
- * @author Rivaldz
+ * @author MEUTIA KHANANDIYA
  */
-public class Transaksi extends javax.swing.JFrame {
+import java.util.text.SimpleDateFormat ;
+import java.util.* ;
+import javax.swing.JOptionPane ;
+import javax.swing.table.DefaultTableModel ;
+import MeutiaKhanandiya.* ;
+import javax.swing.DefaultComboBoxModel ;
+public class FirstTable extends javax.swing.JFrame {
 
     /**
      * Creates new form Transaksi
      */
-    public Transaksi() {
+    private int id = 0;
+    private String code ;
+    private DefaultTableModel tbModel ;
+    private DefaultComboBoxModel cbModel ;
+    private ArrayList<item> belanja = new ArrayList<>() ;
+
+    public FirstTable() {
+        
+        ComboFirst comboModel = new ComboFirst() ;
+        this.cbModel = new DefaultComboBoxModel<>(comboModel.getNames().toArray());
+        
+        TabelFirst tableModel = new TabelFirst();
+        this.tbModel = new DefaultTableModel (tableModel.getKolomNama() , 0) ;
+        
         initComponents();
     }
+    
+    private void incId () {
+        this.id += 1 ;
+        
+    }
+    
+    private void decId () {
+        this.id -= 1 ;
+    }
+    
+    private String setKode () {
+        this.incId() ;
+        // menunjukan tanggal
+        String sk = new SimpleDateFormat ("yyMMdd").format(newDate()) ;
+        this.code String.format(sk + "%02d", this.id) ;
+        return code ;
+    }
+
+    private Object[] addItem (String nama , int jumlah) {
+        float harga = 0;
+        ComboFirst items = new ComboFirst() ;
+        for (int i = 0; i < items.getNames(). size(); i++){
+            if (nama.equalsIgnoreCase(items.getNames().get(i))) {
+                harga = items.getPrices().get(i) ;
+            }
+        }
+        Object[]obj = {
+            nama,
+            harga,
+            jumlah,
+            
+        };
+        return obj ;
+    }
+    
+    // update fungsi pada jumlah barang
+    private void updateJumlah (String nama , int add ) {
+        ArrayList<String> item = new ArrayList<> ();
+        for (int i = 0; i < tbModel.getRowCount(); i++){
+            item.add (tbModel.getValueAt(i, 0).toString()) ;
+        }
+        for(int i = 0; i < item.size(); i++){
+            if (item.get(i).equals(nama)) {
+                int jumlah = new Integer (tbModel.getValueAt(i ,2 ).toString());
+                tbModel.setValueAt(jumlah+add , i, 2);
+            }
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +127,11 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel2.setText("Items");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kopi", "Gula", "Susu" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Save");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +259,10 @@ public class Transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -203,20 +280,21 @@ public class Transaksi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Transaksi().setVisible(true);
+                new FirstTable().setVisible(true);
             }
         });
     }
