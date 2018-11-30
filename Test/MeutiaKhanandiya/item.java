@@ -60,4 +60,12 @@ public class item {
         this.jumlah = jumlah;
         
     }
+    // perkalian harga dan jumlah
+    public float getTotal () {
+        return this.harga * this.jumlah ;
+    }
+    
+    public String toString () {
+        return this.nama ;
+    }
 }
